@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+        .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
+        .otp-box { background: white; border: 2px dashed #667eea; padding: 20px; text-align: center; font-size: 32px; font-weight: bold; letter-spacing: 5px; margin: 20px 0; border-radius: 8px; color: #667eea; }
+        .footer { text-align: center; margin-top: 20px; color: #666; font-size: 12px; }
+        .button { background: #667eea; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Welcome to Hackify!</h1>
+        </div>
+        <div class="content">
+            <h2>Hello {{ user_name }},</h2>
+            <p>Thanks for joining Hackify - where innovation meets collaboration!</p>
+            <p>Please use the following verification code to activate your account:</p>
+            
+            <div class="otp-box">{{ otp_code }}</div>
+            
+            <p><strong>This code will expire in 10 minutes.</strong></p>
+            
+            <p>If you didn't create an account with Hackify, please ignore this email.</p>
+            
+            <p>Happy Hacking! 🎯</p>
+            <p><strong>The Hackify Team</strong></p>
+        </div>
+        <div class="footer">
+            <p>© 2026 Hackify. All rights reserved.</p>
+            <p>Weekly hackathons to enhance your real-world skills</p>
+        </div>
+    </div>
+</body>
+</html>

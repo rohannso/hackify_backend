@@ -92,8 +92,7 @@ import dj_database_url
 import os
 
 DATABASE_URL = os.getenv('DATABASE_URL')
-print(f"DATABASE_URL present: {DATABASE_URL is not None}")  # Debug line
-print(f"DATABASE_URL value: {DATABASE_URL}")  # Debug line
+
 
 DATABASES = {
     'default': dj_database_url.config(

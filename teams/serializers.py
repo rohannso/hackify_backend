@@ -48,4 +48,4 @@ class SendInvitationSerializer(serializers.Serializer):
     email = serializers.EmailField()
 
 class AssignMentorSerializer(serializers.Serializer):
-    mentor_id = serializers.IntegerField()
+    email = serializers.EmailField()    

@@ -183,14 +183,22 @@ def assign_mentor(request, team_id):
     
     serializer = AssignMentorSerializer(data=request.data)
     if serializer.is_valid():
-        mentor_id = serializer.validated_data['mentor_id']
+        email = serializer.validated_data['email']
         try:
-            mentor = User.objects.get(pk=mentor_id, role='faculty')
+            mentor = User.objects.get(email=email, role='faculty', is_verified=True)
             team.mentor = mentor
             team.save()
-            return Response({'message': f'Mentor {mentor.name} assigned to team {team.name}'})
+            return Response({
+                'message': f'Mentor {mentor.name} assigned to team {team.name}',
+                'mentor': {
+                    'id': mentor.id,
+                    'name': mentor.name,
+                    'email': mentor.email
+                }
+            })
         except User.DoesNotExist:
-            return Response({'error': 'Faculty not found'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'error': 'Faculty with this email not found'}, 
+                           status=status.HTTP_404_NOT_FOUND)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # ============ FACULTY: View Mentored Teams ============

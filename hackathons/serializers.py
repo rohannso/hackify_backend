@@ -44,7 +44,7 @@ class FeedbackSerializer(serializers.ModelSerializer):
             'id', 'submission', 'mentor', 'mentor_name',
             'comments', 'rating', 'created_at', 'updated_at'
         ]
-        read_only_fields = ['mentor']
+        read_only_fields = ['mentor','submission']
 
 class SubmissionDetailSerializer(serializers.ModelSerializer):
     student_name = serializers.CharField(source='student.name', read_only=True)

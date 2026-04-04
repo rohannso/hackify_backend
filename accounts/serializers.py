@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from .models import StudentProfile, FacultyProfile, OTP
 import random
 from django.conf import settings
+from .utils import send_email_async
 
 User = get_user_model()
 
@@ -15,35 +16,29 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
     
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
-        
-        # Generate OTP
         otp_code = str(random.randint(100000, 999999))
         OTP.objects.create(user=user, code=otp_code)
-        
-        # Send OTP email (will print in console)
-        from django.core.mail import send_mail
-        # Send OTP email
-        send_mail(
+        message = f'''
+Hello {user.name},
+
+Welcome to Hackify! 
+
+Your email verification code is: {otp_code}
+
+This code will expire in 10 minutes.
+
+If you didn't request this, please ignore this email.
+
+Best regards,
+Hackify Team
+    '''
+    
+        send_email_async(
         subject='Hackify - Email Verification Code',
-        message=f'''
-        Hello {user.name},
-
-        Welcome to Hackify! 
-
-        Your email verification code is: {otp_code}
-
-        This code will expire in 10 minutes.
-
-        If you didn't request this, please ignore this email.
-
-        Best regards,
-        Hackify Team
-        ''',
-        from_email=settings.DEFAULT_FROM_EMAIL,
+        message=message,
         recipient_list=[user.email],
-        fail_silently=False,
-        )
-        
+    )
+    
         return user
 
 class OTPVerificationSerializer(serializers.Serializer):

@@ -166,6 +166,7 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', default='')
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER', default='noreply@hackify.com')
 OTP_EXPIRY_MINUTES = 10
+print(EMAIL_HOST_USER," ",EMAIL_HOST_PASSWORD)
 
 if not DEBUG:
     SECURE_SSL_REDIRECT = True

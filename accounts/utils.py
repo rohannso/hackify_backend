@@ -84,7 +84,3 @@ Hackify Team
         html_message=html_message,
         fail_silently=False,
     )
-<<<<<<< HEAD
-=======
-    
->>>>>>> 1af0fd76c87d5fcd3821a4b493f4e3311596efe2

@@ -15,7 +15,7 @@ def send_email_async(subject, message, recipient_list, html_message=None):
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=recipient_list,
                 html_message=html_message,
-                fail_silently=True,  # Don't crash if email fails
+                fail_silently=False,  # Don't crash if email fails
             )
         except Exception as e:
             print(f"Email sending failed: {e}")
